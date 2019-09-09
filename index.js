@@ -9,12 +9,16 @@ const getSize = () => {
     size ? generateGrid(size) : generateGrid();
 }
 
-const pickRandom256 = () => {
-    return Math.floor(Math.random()*257);
+const pickRandomN = (range) => {
+    return Math.floor(Math.random()*(range+1));
 }
 
-const colorizeBox = (e) => {
-    e.target.style.background = `rgb(${pickRandom256()}, ${pickRandom256()}, ${pickRandom256()})`;
+const pickRandomInRange = (min, max) => {
+    return Math.floor(Math.random()*(max-min)+min)
+}
+
+const purplizeBox = (e) => {
+    e.target.style.background = `rgb(${pickRandomInRange(100, 256)}, ${50+pickRandomN(78)}, ${pickRandomInRange(100, 256)})`;
 }
 
 const generateGrid = (size=16) => {
@@ -25,8 +29,9 @@ const generateGrid = (size=16) => {
     let squareSide = Math.floor (800 / size);
 
     //Resizes container if it fills unevenly
-    wrapper.style.maxWidth = `${squareSide*size}px`;
-    wrapper.style.maxHeight = `${squareSide*size}px`;
+    container.style.maxWidth = `${squareSide*size}px`;
+    container.style.maxHeight = `${squareSide*size}px`;
+    container.style.top = `${(900 - squareSide*size) / 2}px`;
 
     for ( let i=0; i < size; i++ ) {
         let row = document.createElement('div');
@@ -36,15 +41,15 @@ const generateGrid = (size=16) => {
             square.classList.add('square');
             square.style.height = `${squareSide}px`;
             square.style.width = `${squareSide}px`;
-            square.addEventListener('mouseover', colorizeBox);
+            square.addEventListener('mouseover', purplizeBox);
             row.appendChild(square);
         }
         container.appendChild(row);
     }
+    container.appendChild(button);
 }
 
 button.addEventListener('click', getSize)
 
 generateGrid();
-wrapper.appendChild(button);
 
