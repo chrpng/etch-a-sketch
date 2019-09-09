@@ -2,7 +2,7 @@ const wrapper = document.querySelector('.wrapper');
 const container = document.querySelector('.container');
 
 button = document.createElement('button');
-button.innerHTML = 'Reset';
+button.innerHTML = 'Modify canvas dimensions';
 
 const getSize = () => {
     size = prompt('How many squares per side?');
@@ -26,12 +26,7 @@ const generateGrid = (size=16) => {
     container.innerHTML = '';
 
     //Calculate square size
-    let squareSide = Math.floor (800 / size);
-
-    //Resizes container if it fills unevenly
-    container.style.maxWidth = `${squareSide*size}px`;
-    container.style.maxHeight = `${squareSide*size}px`;
-    container.style.top = `${(900 - squareSide*size) / 2}px`;
+    let squareSide = 100 / size;
 
     for ( let i=0; i < size; i++ ) {
         let row = document.createElement('div');
@@ -39,8 +34,8 @@ const generateGrid = (size=16) => {
         for ( let j=0; j < size; j++ ) {
             let square = document.createElement('div');
             square.classList.add('square');
-            square.style.height = `${squareSide}px`;
-            square.style.width = `${squareSide}px`;
+            square.style.height = `${squareSide}%`;
+            square.style.width = `${squareSide}%`;
             square.addEventListener('mouseover', purplizeBox);
             row.appendChild(square);
         }

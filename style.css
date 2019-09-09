@@ -10,9 +10,9 @@
 .container {
     background: #eee;
     max-width: 800px;
-    max-height: 800px;
+    height: 800px;
     position: relative;
-    top: 100px;
+    top: 50px;
     margin: 0 auto;
 }
 
@@ -34,4 +34,10 @@ button {
     background: rgb(241, 235, 250);
     border: none;
     border-radius: 4px;
+    color: #999;
+}
+
+button:hover {
+    background: rgb(165, 161, 172);
+    color: #222;
 }
