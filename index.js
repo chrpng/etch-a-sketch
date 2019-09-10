@@ -28,23 +28,24 @@ const generateGrid = (size=16) => {
     //Calculate square size
     let squareSide = 100 / size;
 
+    container.style.gridTemplateRows = `repeat(${size}, ${squareSide}%)`;
+    container.style.gridTemplateColumns = `repeat(${size}, ${squareSide}%)`;
+
     for ( let i=0; i < size; i++ ) {
-        let row = document.createElement('div');
-        row.classList.add('row');
+        //let row = document.createElement('div');
+        //row.classList.add('row');
         for ( let j=0; j < size; j++ ) {
             let square = document.createElement('div');
             square.classList.add('square');
-            square.style.height = `${squareSide}%`;
-            square.style.width = `${squareSide}%`;
             square.addEventListener('mouseover', purplizeBox);
-            row.appendChild(square);
+            container.appendChild(square);
         }
-        container.appendChild(row);
+        //container.appendChild(row);
     }
-    container.appendChild(button);
 }
 
 button.addEventListener('click', getSize)
 
 generateGrid();
+wrapper.appendChild(button);
 
